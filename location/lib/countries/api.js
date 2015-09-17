@@ -1,10 +1,8 @@
 var api = function(opts){
-  var express = require('express');
-  var router = express.Router();
+  var router = opts.router;
   var collection = opts.collection;
 
   router.get('/countries.json/:host', function(req, res, next) {
-    console.log('Into the router')
     var host = req.params.host;
     var country = collection.find(host);
     

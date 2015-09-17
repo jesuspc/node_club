@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "test": "mocha"
   },
   "dependencies": {
     "body-parser": "~1.13.2",
@@ -13,6 +14,7 @@
     "jade": "~1.11.0",
     "morgan": "~1.6.1",
     "serve-favicon": "~2.3.0",
-    "mmdb-reader": "latest"
+    "mmdb-reader": "latest",
+    "mocha": "latest"
   }
 }

@@ -18,6 +18,15 @@ var box = (function() {
     };
   };
 
+  var serve = function(name) {
+    return function(){ return get(name) }
+  }
+
+  let('router', function(){
+    var express = require('express');
+    return express.Router();
+  });
+
   let('mmdbPath', function(){ return './GeoLite2-Country.mmdb' });
 
   let('mmdbConnection', function(){
@@ -42,26 +51,28 @@ var box = (function() {
   let('countriesApi', function(){
     var countriesApi = require('./lib/countries/api');
     return countriesApi({
-      collection: get('countriesCollection')
+      collection: get('countriesCollection'),
+      router: get('router')
     });
   });
 
   return {
+    router: serve('router'),
     persistence: {
       mmdb: {
-        connection: function() { return get('mmdbConnection') },
-        path: function() { return get('mmdbPath') }
+        connection: serve('mmdbConnection'),
+        path: serve('mmdbPath')
       }
     },
     adapters: {
-      mmdb: function() { return get('mmdbAdapter') },
+      mmdb: serve('mmdbAdapter'),
       external: {
 
       }
     },
     countries: {
-      collection: function() { return get('countriesCollection') },
-      api: function() { return get('countriesApi') }
+      collection: serve('countriesCollection'),
+      api: serve('countriesApi')
     }
   };
 })();
