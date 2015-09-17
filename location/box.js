@@ -1,6 +1,6 @@
 var box = (function() {
-  var defined = {};
-  var memoized = {};
+  var defined = {}
+    , memoized = {}
 
   var let = function(name, generator){
     defined[name] = generator;
@@ -12,9 +12,9 @@ var box = (function() {
     if(!!memoized_elm) {
       return memoized_elm;
     } else {
-      obj = defined[name]();
-      memoized[name] = obj;
-      return obj;
+      generated = defined[name]();
+      memoized[name] = generated;
+      return generated;
     };
   };
 
