@@ -8,6 +8,7 @@ var box = (function() {
 
   var get = function(name) {
     memoized_elm = memoized[name];
+    
     if(!!memoized_elm) {
       return memoized_elm;
     } else {
@@ -48,19 +49,19 @@ var box = (function() {
   return {
     persistence: {
       mmdb: {
-        connection: function() { get('mmdbConnection') },
-        path: function() { get('mmdbPath') }
+        connection: function() { return get('mmdbConnection') },
+        path: function() { return get('mmdbPath') }
       }
     },
     adapters: {
-      mmdb: function() { get('mmdbAdapter') },
+      mmdb: function() { return get('mmdbAdapter') },
       external: {
 
       }
     },
     countries: {
-      collection: function() { get('countriesCollection') },
-      api: function() { get('countriesApi') }
+      collection: function() { return get('countriesCollection') },
+      api: function() { return get('countriesApi') }
     }
   };
 })();
