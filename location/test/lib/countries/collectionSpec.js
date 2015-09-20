@@ -9,8 +9,11 @@ var subject = (function(){
       } 
     } 
   };
+  var entity = {
+    build: function(attributes) { return attributes; }
+  }
 
-  return builder({adapter: adapter});
+  return builder({adapter: adapter, entity: entity});
 })();
 
 describe('Countries collection', function() {

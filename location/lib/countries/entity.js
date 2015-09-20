@@ -5,7 +5,9 @@ var entity = function(opts) {
     if(!attributes){
       return null;
     } else {
-      return mapper.load(attributes);
+      return {
+        attributes: mapper.load(attributes)
+      };
     };
   };
 

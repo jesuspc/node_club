@@ -15,6 +15,7 @@
     "morgan": "~1.6.1",
     "serve-favicon": "~2.3.0",
     "mmdb-reader": "latest",
-    "mocha": "latest"
+    "mocha": "latest",
+    "request": "latest"
   }
 }

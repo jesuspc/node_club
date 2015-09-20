@@ -9,7 +9,7 @@ var api = function(opts){
     
     if(!!country){
       res.json({
-        "country" : serializer.as_json(country), 
+        "country" : serializer.asJson(country), 
         "host" : host
       });
     } else {

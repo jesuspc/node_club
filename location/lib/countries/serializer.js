@@ -1,16 +1,18 @@
 var serializer = function() {
 
-  var as_json = function(country) {
+  var asJson = function(country) {
+    var countryAttrs = country.attributes;
+
     return {
-      language: country.language,
-      name: country.name,
-      geoname_id: country.geonameId,
-      iso_code: country.isoCode
+      language: countryAttrs.language,
+      name: countryAttrs.name,
+      geoname_id: countryAttrs.geonameId,
+      iso_code: countryAttrs.isoCode
     }
   };
 
   return {
-    as_json: as_json
+    asJson: asJson
   };
 };
 
