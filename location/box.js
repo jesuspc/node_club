@@ -38,7 +38,12 @@ var box = (function() {
     },
     countries: {
       collection: serve('countriesCollection'),
-      api: serve('countriesApi')
+      api: serve('countriesApi'),
+      entity: serve('countriesEntity'),
+      serializer: serve('countriesSerializer'),
+      mappers: {
+        mmdb: serve('countriesMmdbMapper')
+      }
     }
   };
 
@@ -64,7 +69,8 @@ var box = (function() {
   let('countriesCollection', function(){
     var countriesCollection = require('./lib/countries/collection');
     return countriesCollection({
-      adapter: boxer.adapters.mmdb()
+      adapter: boxer.adapters.mmdb(),
+      entity: boxer.countries.entity()
     });
   })
 
@@ -72,8 +78,26 @@ var box = (function() {
     var countriesApi = require('./lib/countries/api');
     return countriesApi({
       collection: boxer.countries.collection(),
-      router: boxer.router()
+      router: boxer.router(),
+      serializer: boxer.countries.serializer()
     });
+  });
+
+  let('countriesEntity', function(){
+    var countriesEntity = require('./lib/countries/entity');
+    return countriesEntity({
+      mapper: boxer.countries.mappers.mmdb()
+    });
+  });
+
+  let('countriesSerializer', function(){
+    var countriesSerializer = require('./lib/countries/serializer');
+    return countriesSerializer();
+  });
+
+  let('countriesMmdbMapper', function(){
+    var countriesMapper = require('./lib/countries/mappers/mmdb');
+    return countriesMapper();
   });
 
   return boxer;

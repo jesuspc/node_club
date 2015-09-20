@@ -1,13 +1,17 @@
 var api = function(opts){
   var router = opts.router;
   var collection = opts.collection;
+  var serializer = opts.serializer;
 
   router.get('/countries.json/:host', function(req, res, next) {
     var host = req.params.host;
     var country = collection.find(host);
     
     if(!!country){
-      res.json({"country" : country, "host" : host});
+      res.json({
+        "country" : serializer.as_json(country), 
+        "host" : host
+      });
     } else {
       res.json({
         "host" : host,
