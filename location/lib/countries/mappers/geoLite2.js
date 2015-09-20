@@ -1,4 +1,4 @@
-var mmdbMapper = function() {
+var geoLite = function() {
 
   var load = function(attributes) {
     return {
@@ -14,4 +14,4 @@ var mmdbMapper = function() {
   };
 };
 
-module.exports = mmdbMapper;
+module.exports = geoLite;

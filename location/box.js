@@ -42,7 +42,7 @@ var box = (function() {
       entity: serve('countriesEntity'),
       serializer: serve('countriesSerializer'),
       mappers: {
-        mmdb: serve('countriesMmdbMapper')
+        geoLite2: serve('countriesGeoLite2Mapper')
       }
     }
   };
@@ -86,7 +86,7 @@ var box = (function() {
   let('countriesEntity', function(){
     var countriesEntity = require('./lib/countries/entity');
     return countriesEntity({
-      mapper: boxer.countries.mappers.mmdb()
+      mapper: boxer.countries.mappers.geoLite2()
     });
   });
 
@@ -95,8 +95,8 @@ var box = (function() {
     return countriesSerializer();
   });
 
-  let('countriesMmdbMapper', function(){
-    var countriesMapper = require('./lib/countries/mappers/mmdb');
+  let('countriesGeoLite2Mapper', function(){
+    var countriesMapper = require('./lib/countries/mappers/geoLite2');
     return countriesMapper();
   });
 

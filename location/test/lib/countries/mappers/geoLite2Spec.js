@@ -1,7 +1,7 @@
 var assert = require("assert");
 
 var subject = (function(){
-  var builder = require("../../../../lib/countries/mappers/mmdb");
+  var builder = require("../../../../lib/countries/mappers/geoLite2");
 
   return builder();
 })();
