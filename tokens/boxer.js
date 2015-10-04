@@ -1,4 +1,4 @@
-var boxer = (function() {
+var boxer = function() {
   var defined = {};
   var memoized = {};
 
@@ -50,7 +50,7 @@ var boxer = (function() {
   };
 
   return { set: set, get: get, box: box };
-})();
+};
 
 module.exports = boxer;
 

@@ -58,8 +58,14 @@ module.exports = function(boxer) {
   boxer.set('tokens.api', function(){
     var api = require('./lib/tokens/api');
     return api({
-      router: box.router()
+      router: box.router(),
+      createAction: box.tokens.controller.createAction()
     });
+  });
+
+  boxer.set('tokens.controller.createAction', function(){
+    var action = require('./lib/tokens/api/actions/create');
+    return action();
   });
 
   boxer.set('router', function(){
@@ -78,7 +84,7 @@ module.exports = function(boxer) {
     app.use(box.middleware.bodyParser.urlEncoded());
     app.use(box.middleware.cookieParser());
     app.use(box.middleware.publicFiles());
-    //app.use(box.tokens.api());
+    app.use(box.tokens.api());
     app.use(box.middleware.errorHandler.notFound());
 
     if(app.get('env') === 'development'){

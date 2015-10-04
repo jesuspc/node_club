@@ -1,6 +1,6 @@
 var assert = require('assert');
 
-var subject = require('../boxer');
+var subject = require('../boxer')();
 
 describe('Boxer', function() {
   describe('#box', function() {
