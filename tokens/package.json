@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "supervisor ./bin/www",
+    "console": "node console.js",
     "test": "supervisor -q -n exit -x mocha --recursive -- -b"
   },
   "dependencies": {
