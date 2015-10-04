@@ -1,5 +1,5 @@
 var repl = require("repl");
-var boxer = require('./boxer');
+var boxer = require('./boxer')();
 var box = require('./box')(boxer);
 
 console.log('>>> Welcome to the Tokens microservice Repl.');

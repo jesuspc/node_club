@@ -13,9 +13,11 @@
     "debug": "~2.2.0",
     "express": "~4.13.1",
     "jade": "~1.11.0",
+    "knex": "latest",
+    "mocha": "latest",
     "morgan": "~1.6.1",
     "serve-favicon": "~2.3.0",
-    "mocha": "latest",
+    "sqlite3": "^3.1.0",
     "supertest": "latest",
     "supervisor": "latest"
   }

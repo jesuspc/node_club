@@ -5,14 +5,15 @@ var app = require('../../app');
 
 describe('[INTEGRATION] Create Token', function(){
   describe('when successful authorization and valid params', function(){
-    var sessionId = '';
+    var sessionId = 'some';
     var tokenContent = 'some content';
     var tokenMaxAge = 1000;
     var tokenType = 'token';
-    var tokenData = {
-      content: tokenContent,
-      maxAge: tokenMaxAge,
-      type: tokenType
+    var tokenData = { TokenRequest: {
+        content: tokenContent,
+        maxAge: tokenMaxAge,
+        type: tokenType
+      }
     };
     var doRequest = function() {
       return request(app)

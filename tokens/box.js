@@ -65,7 +65,36 @@ module.exports = function(boxer) {
 
   boxer.set('tokens.controller.createAction', function(){
     var action = require('./lib/tokens/api/actions/create');
-    return action();
+    return action({
+      createTransaction: box.tokens.transactions.create(),
+      parametrizer: box.tokens.controller.parametrizer()
+    });
+  });
+
+  boxer.set('tokens.controller.parametrizer', function(){
+    return require('./lib/tokens/api/parametrizer.js');
+  });
+
+  boxer.set('tokens.transactions.create', function(){
+    var transaction = require('./lib/tokens/transactions/create.js');
+    return transaction();
+  });
+
+  boxer.set('persistence.adapter', function(){
+    return 'sqlite3';
+  });
+
+  boxer.set('persistence.database', function(){
+    return './data.db';
+  });
+
+  boxer.set('persistence.client', function(){
+    return require('knex')({
+      dialect: box.persistence.adapter(),
+      connection: {
+        filename: box.persistence.database()
+      }
+    });
   });
 
   boxer.set('router', function(){
@@ -88,9 +117,9 @@ module.exports = function(boxer) {
     app.use(box.middleware.errorHandler.notFound());
 
     if(app.get('env') === 'development'){
-      app.use(box.middleware.errorHandler.stackTrace());
+      //app.use(box.middleware.errorHandler.stackTrace());
     } else {
-      app.use(box.middleware.errorHandler.silent());
+      //app.use(box.middleware.errorHandler.silent());
     }
 
     return app;
